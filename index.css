@@ -1,0 +1,269 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    font-family: 'Alegreya Sans SC', sans-serif;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background/50 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted rounded-full transition-colors;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
+}
+
+@layer components {
+  /* Sidebar Styles */
+  .sidebar {
+    @apply fixed left-0 top-16 bottom-0 w-[180px] bg-card border-r z-50 overflow-y-auto;
+  }
+
+  .sidebar-content {
+    @apply p-3 space-y-1;
+  }
+
+  /* Main Content Area */
+  .main-content {
+    @apply pt-16 transition-all duration-300;
+  }
+
+  .main-content-shifted {
+    @apply lg:ml-[180px];
+  }
+
+  /* Dashboard Welcome Section */
+  .welcome-section {
+    @apply bg-gradient-to-r from-primary/10 via-primary/5 to-background rounded-lg p-6 mt-0;
+  }
+
+  /* Comeback Mode Styles */
+  .comeback-mode {
+    @apply bg-gradient-to-br from-blue-500/10 via-teal-500/10 to-purple-500/10;
+  }
+
+  .music-player {
+    @apply bg-card rounded-lg p-4 shadow-lg border;
+  }
+
+  .volume-slider {
+    @apply w-full h-2 bg-secondary rounded-full overflow-hidden cursor-pointer;
+  }
+
+  /* Analytics Charts */
+  .chart-container {
+    @apply bg-card p-4 rounded-lg border shadow-sm;
+  }
+
+  .chart-title {
+    @apply text-lg font-semibold mb-4;
+  }
+
+  /* Auth pages specific styles */
+  .auth-container {
+    @apply w-full max-w-[400px] mx-auto px-4 py-8;
+  }
+
+  .auth-form {
+    @apply w-full bg-card p-6 md:p-8 rounded-lg shadow-lg border;
+  }
+
+  /* Form improvements */
+  .form-group {
+    @apply space-y-2;
+  }
+
+  .form-label {
+    @apply text-sm font-medium text-foreground flex items-center gap-2;
+  }
+
+  .form-input {
+    @apply w-full p-3 rounded-lg border bg-background text-foreground focus:ring-2 focus:ring-primary focus:ring-offset-0 focus:outline-none transition-all duration-200;
+  }
+
+  /* Button Hover Effects */
+  .btn-hover {
+    @apply hover:scale-105 transition-transform duration-200;
+  }
+
+  /* Card Hover Effects */
+  .card-hover {
+    @apply hover:shadow-lg transition-shadow duration-200;
+  }
+
+  /* Tab Hover Effects */
+  .tab-hover {
+    @apply hover:bg-primary/10 transition-colors duration-200;
+  }
+
+  /* Device Compatibility Notice */
+  .device-notice {
+    @apply fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-80 bg-card p-4 rounded-lg shadow-lg border z-50;
+  }
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 640px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  h1, .h1 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+  
+  h2, .h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  
+  .section-padding {
+    padding: 1rem;
+  }
+  
+  .section-spacing {
+    margin-bottom: 1rem;
+  }
+  
+  .flex-gap {
+    gap: 1rem;
+  }
+
+  /* Mobile-specific styles for Chillout page */
+  .music-player {
+    margin: 0 1rem;
+  }
+
+  .volume-slider {
+    width: 100%;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
+  }
+
+  .hero-heading {
+    font-size: 1.875rem;
+  }
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Music Player Animations */
+.music-player-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.music-player-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.music-player-exit {
+  opacity: 1;
+}
+
+.music-player-exit-active {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 300ms, transform 300ms;
+}
